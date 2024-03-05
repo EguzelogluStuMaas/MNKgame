@@ -66,7 +66,7 @@ public class MCTSPlayer implements Player{
         return cell;
 
     }
-    private boolean updateWinTable(int i,int j,CellState player){
+    boolean updateWinTable(int i,int j,CellState player){
         CellState currentState=player;
         int count;
         count = 1;

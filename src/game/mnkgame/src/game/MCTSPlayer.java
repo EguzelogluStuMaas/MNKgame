@@ -179,7 +179,7 @@ public class MCTSPlayer implements Player{
 
     @Override
     public String playerName() {
-        // TODO Auto-generated method stub
+      
         return "MCTS";
     }
 

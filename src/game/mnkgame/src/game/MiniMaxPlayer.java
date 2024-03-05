@@ -14,43 +14,12 @@ private int MAX_DEPTH=5;
      * @param isMax Maximising or minimising player 
      * @return Value of the board state
      */
-    public int MiniMaxPlayer(BigToeBoard board, int depth, boolean isMax) {
-        int score = evaluate(board);
-        if (score == 10) {
-            return score;
-        }
-        if (score == -10) {
-            return score;
-        }
-        if (board.emptyCells.isEmpty()) {
-            return 0;
-        }
-        if (depth == MAX_DEPTH) {
-            return score;
-        }
-        if (isMax) {
-            int best = -1000;
-            for (Cell cell : board.emptyCells) {
-                board.BOARD[cell.i][cell.j] = CellState.PLAYER_1;
-                best = Math.max(best, MiniMaxPlayer(board, depth + 1, !isMax));
-                board.BOARD[cell.i][cell.j] = CellState.EMPTY;
-            }
-            return best;
-        } else {
-            int best = 1000;
-            for (Cell cell : board.emptyCells) {
-                board.BOARD[cell.i][cell.j] = CellState.PLAYER_2;
-                best = Math.min(best, MiniMaxPlayer(board, depth + 1, !isMax));
-                board.BOARD[cell.i][cell.j] = CellState.EMPTY;
-            }
-            return best;
-        }
-    
-    
-
-}
-
-private static int evaluateBoard(BigToeBoard board, int depth){
-    
-}
+    public static int MiniMaxPlayer(BigToeBoard board, int depth, boolean isMax,int alpha,int beta){
+        int boardVal = evaluateBoard(board);
+    }
+    private static int evaluateBoard(BigToeBoard board){
+        int score=0;
+        
+    }
+        
 }

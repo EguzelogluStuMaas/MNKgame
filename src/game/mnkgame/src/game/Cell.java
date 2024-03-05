@@ -1,4 +1,4 @@
-
+package game;
 
 public class Cell {
     /* Cell row index

@@ -1,4 +1,4 @@
-package main.java.com.ege.main;
+package game;
 
 public class Cell {
     /* Cell row index
@@ -22,8 +22,8 @@ public class Cell {
      * @param j column index
      */
     public Cell(int i,int j) {
-        this.i = cell.i;
-        this.j = cell.j;
+        this.i = i;
+        this.j = j;
         this.state = CellState.EMPTY;
     }
     @Override
@@ -41,7 +41,7 @@ public class Cell {
         return this.toString().hashCode();
     }
     @Override
-    public toString() {
+    public String toString() {
         return "Cell(" + this.i + "," + this.j + "," + this.state + ")";
     }
 

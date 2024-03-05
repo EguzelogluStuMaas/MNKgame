@@ -1,8 +1,9 @@
-package main.java.com.ege.main;
-import java.lang.IndexOutOfBoundsException;
-import java.lang.IllegalStateException;
+package game;
+
+
 import java.util.LinkedList;
 import java.util.HashSet;
+
 public class BigToeBoard {
     public final int M;
     public final int N;
@@ -11,8 +12,8 @@ public class BigToeBoard {
     protected final LinkedList<Cell> selectedCells;
     protected final HashSet<Cell> emptyCells;
     protected GameState gameState;
-    private final CellState[] Players={CellState.PLAYER_1, CellState.PLAYER_2};
-    private int currentPlayer;
+    private final CellState[] Player={CellState.PLAYER_1, CellState.PLAYER_2};
+    protected int currentPlayer;
     public BigToeBoard(int M, int N, int K) {
         this.M = M;
         this.N = N;
@@ -28,7 +29,7 @@ public class BigToeBoard {
         return currentPlayer;
     }
 
-    public CellState selectCell(int i, int j) throws IndexOutOfBoundsException, IllegalStateException {
+    public GameState selectCell(int i, int j) throws IndexOutOfBoundsException, IllegalStateException {
         if(gameState!=GameState.ONGOING)
         {
             throw new IllegalStateException("Game is over");
@@ -40,7 +41,7 @@ public class BigToeBoard {
             throw new IllegalStateException("Cell is already selected");
         }
         Cell oldCell = new Cell(i,j,BOARD[i][j]);
-        Cell newCell = new Cell(i,j,Players[currentPlayer]);
+        Cell newCell = new Cell(i,j,Player[currentPlayer]);
         BOARD[i][j] = Player[currentPlayer];
         emptyCells.remove(oldCell);
         selectedCells.add(newCell);
@@ -71,9 +72,9 @@ public class BigToeBoard {
         {
             Cell oldCell = selectedCells.removeLast();
             Cell newCell = new Cell(oldCell.i,oldCell.j,CellState.EMPTY);
-            this.BOARD[oldCell.i][oldCell.j] = CellState.EMPTY;
+            BOARD[oldCell.i][oldCell.j] = CellState.EMPTY;
             emptyCells.add(newCell);
-            this.currentPlayer = (this.currentPlayer + 1) % 2;
+            currentPlayer = (currentPlayer + 1) % 2;
             gameState = GameState.ONGOING;
         }
     }
@@ -119,7 +120,7 @@ public class BigToeBoard {
         count++;
     }
     if(count>=K) return true;
-    //Diagonal backwards check
+    //Diagonal backwards checkEMPTY)
     count=1;
     for(int k=1;k>=0 && BOARD[i-k][j+k]==currentState;k++)
     {
@@ -135,8 +136,9 @@ public class BigToeBoard {
 
 
     public GameState getGameState() {
-        return this.gameState;
+        return gameState;
     }
+    
 
     public void reset()
     {
@@ -152,7 +154,7 @@ public class BigToeBoard {
     public Cell[] getSelectedCells() {
         return selectedCells.toArray(new Cell[selectedCells.size()]);
     }
-    public cell[] getEmptyCells() {
+    public Cell[] getEmptyCells() {
         return emptyCells.toArray(new Cell[emptyCells.size()]);
     }
     private void resetEmptyCellList() {

@@ -1,4 +1,6 @@
-package main.java.com.ege.main;
+
+
+package game; // Move the file to a named package
 
 public enum CellState {
     /**Empty,selected by either player */
